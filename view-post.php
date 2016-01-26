@@ -2,6 +2,16 @@
 
 require_once 'lib/common.php';
 
+// get the post id
+if(isset($_GET['post_id']))
+{
+    $postId = $_GET['post_id'];
+}
+else
+{
+    $postId = 0;
+}
+
 $pdo = getPDO();
 $stmt = $pdo->prepare(
     'SELECT title, created_at, body
@@ -15,7 +25,7 @@ if($stmt == FALSE)
 }
 
 $result= $stmt->execute(
-    array('id' => 1, )
+    array('id' => $postId, )
 );
 if($result == false)
 {
@@ -24,8 +34,8 @@ if($result == false)
 
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$bodytext = HTMLEscape($row['body']);
-$paratext = str_replace("\n", "</p><p>", $bodytext)
+$bodyText = HTMLEscape($row['body']);
+$paraText = str_replace("\n", "</p><p>", $bodyText)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +56,7 @@ $paratext = str_replace("\n", "</p><p>", $bodytext)
         <?php echo $row['created_at'] ?>
     </div>
     <p>
-        <?php echo $paratext ?>
+        <?php echo $paraText ?>
     </p>
 </body>
 </html>
