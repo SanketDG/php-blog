@@ -30,21 +30,21 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>A Blog Application |
-        <?php echo htmlspecialchars($row['title'], ENT_HTML5, 'UTF-8') ?></title>
+        <?php echo HTMLEscape($row['title']) ?></title>
 </head>
 <body>
     <?php require 'templates/title.php'; ?>
 
     <h2>
         <?php
-            echo htmlspecialchars($row['title'], ENT_HTML5, 'UTF-8');
+            echo HTMLEscape($row['title']);
         ?>
     </h2>
     <div>
         <?php echo $row['created_at'] ?>
     </div>
     <p>
-        <?php echo htmlspecialchars($row['body'], ENT_HTML5, 'UTF-8') ?>
+        <?php echo HTMLEscape($row['body']) ?>
     </p>
 </body>
 </html>
