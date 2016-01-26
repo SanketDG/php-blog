@@ -1,10 +1,8 @@
 <?php
 
-$ROOT = __DIR__;
-$database = __DIR__ . '/data/data.sqlite';
-$dsn = 'sqlite:' . $database;
+require_once 'lib/common.php';
 
-$pdo = new PDO($dsn);
+$pdo = getPDO();
 $stmt = $pdo->prepare(
     'SELECT title, created_at, body
     FROM POST

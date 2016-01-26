@@ -1,10 +1,8 @@
 <?php
 // compute the path to the database
-$root = __DIR__;
-$database = $root . '/data/data.sqlite';
-$dsn = 'sqlite:' . $database;
+require_once 'lib/common.php';
 
-$pdo = new PDO($dsn);
+$pdo = getPDO();
 $stmt = $pdo->query(
     'SELECT id, title, created_at, body
     FROM post

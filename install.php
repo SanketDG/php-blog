@@ -1,8 +1,9 @@
 <?php
 // Get the PDO DSN string
-$root = realpath(__DIR__);
-$database = $root . '/data/data.sqlite';
-$dsn = 'sqlite:' . $database;
+require_once 'lib/common.php';
+$database = getDatabasePath();
+$root = getRootPath();
+
 $error = '';
 // A security measure, to avoid anyone resetting the database if it already exists
 // is_readable() - tells whether a file exists and is readable
@@ -44,7 +45,7 @@ if (!$error)
 if (!$error)
 {
     // load PDO with destination
-    $pdo = new PDO($dsn);
+    $pdo = getPDO();
     // execute the sql read from the file
     $result = $pdo->exec($sql);
     if ($result === false)
