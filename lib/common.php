@@ -43,9 +43,22 @@ function getPDO()
  * @param string $html
  * @return string
  */
- function HTMLEscape($html)
- {
+function HTMLEscape($html)
+{
     return htmlspecialchars($html, ENT_HTML5 , 'UTF-8');
- }
+}
 
+/**
+ * Converts date to readable format
+ *
+ * @param string $sqlDate
+ * @return string
+ */
+function convertSqlDate($sqlDate)
+{
+    /* @var $date DateTime */
+    $date = DateTime::createFromFormat('Y-m-d', $sqlDate);
+
+    return $date->format('d M Y');
+}
 ?>
