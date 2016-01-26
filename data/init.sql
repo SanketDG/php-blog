@@ -34,6 +34,20 @@ INSERT INTO
         title, body, user_id, created_at
     )
     VALUES(
+        "Now for a second article",
+        "This is the body of the second post.
+This is another paragraph.",
+        1,
+        date('now', '-40 days')
+    )
+;
+
+INSERT INTO
+    post
+    (
+        title, body, user_id, created_at
+    )
+    VALUES(
         "Here's a third post",
         "This is the body of the third post.
 This is split into paragraphs.",
