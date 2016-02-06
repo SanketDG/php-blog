@@ -87,7 +87,7 @@ function getCommentsForPost($postId)
     $pdo = getPDO();
     $stmt = $pdo->prepare('SELECT id, name, text, created_at, website FROM comment WHERE post_id = :post_id');
     $stmt->execute(array('post_id' => $postId, ));
-    $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
