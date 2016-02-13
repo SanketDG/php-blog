@@ -85,10 +85,7 @@ if($_POST)
 {
     list($_SESSION['count'], $_SESSION['error']) = installBlog();
 
-    $host = $_SERVER['HTTP_HOST'];
-    $script = $_SERVER['REQUEST_URI'];
-    header('Location: http://' . $host . $script);
-    exit();
+    redirectAndExit('install.php')
 }
 
 $attempted = false;

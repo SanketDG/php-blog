@@ -16,6 +16,13 @@ else
 $pdo = getPDO();
 $row = getPostRow($pdo, $postId);
 
+// If the post does not exist, let's deal with that here
+if (!$row)
+{
+    redirectAndExit('index.php?not-found=1');
+}
+
+
 $bodyText = HTMLEscape($row['body']);
 $paraText = str_replace("\n", "</p><p>", $bodyText)
 ?>
