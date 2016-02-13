@@ -1,6 +1,7 @@
 <?php
 
 require_once 'lib/common.php';
+require_once 'lib/view-post.php';
 
 // get the post id
 if(isset($_GET['post_id']))
@@ -13,26 +14,7 @@ else
 }
 
 $pdo = getPDO();
-$stmt = $pdo->prepare(
-    'SELECT title, created_at, body
-    FROM POST
-    WHERE id=:id
-    '
-);
-if($stmt == FALSE)
-{
-    throw new Exception("There was a problem preparing this query");
-}
-
-$result= $stmt->execute(
-    array('id' => $postId, )
-);
-if($result == false)
-{
-    throw new Exception("There was a problem executing this query");
-}
-
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$row = getPostRow($pdo, $postId);
 
 $bodyText = HTMLEscape($row['body']);
 $paraText = str_replace("\n", "</p><p>", $bodyText)
