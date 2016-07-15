@@ -62,8 +62,8 @@ function addCommentToPost(PDO $pdo, $postId, array $commentData)
 		$sql = "
 			INSERT INTO
 			comment
-			(name, website, text, post_id)
-			VALUES(:name, :website, :text, :post_id)
+			(name, website, text, created_at, post_id)
+			VALUES(:name, :website, :text, :created_at, :post_id)
 		";
 
 		$stmt = $pdo->prepare($sql);
@@ -72,8 +72,13 @@ function addCommentToPost(PDO $pdo, $postId, array $commentData)
 		{
 			throw new Exception("Cannot prepare statement to insert comment");
 		}
+
+		$createdTimestamp = date('Y-m-d H:m:s');
+
 		$result = $stmt->execute(
-			array_merge($commentData, array('post_id' => $postId, ))
+			array_merge(
+				$commentData,
+				array('post_id' => $postId, 'created_at' => $createdTimestamp, ))
 		);
 
 		if($result === false)
@@ -86,7 +91,6 @@ function addCommentToPost(PDO $pdo, $postId, array $commentData)
 			}
 		}
 	}
-
 	return $errors;
 }
 
