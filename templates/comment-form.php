@@ -1,7 +1,6 @@
-<?php
 <hr />
 
-<?php // Report any errors in a bulleted list
+<?php // Report any errors in a bulleted list ?>
 <?php if ($errors): ?>
     <div style="border: 1px solid #ff6666; padding: 6px;">
         <ul>
@@ -11,7 +10,6 @@
         </ul>
     </div>
 <?php endif ?>
-?>
 
 <h3>Add your comment</h3>
 <form method="post">

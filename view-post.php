@@ -34,7 +34,7 @@ if($_POST)
         $pdo,
         $postId,
         $commentData
-    )
+    );
     if(!$errors)
     {
         redirectAndExit('view-post.php?post_id=' . $postId);
